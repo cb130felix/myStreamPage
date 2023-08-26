@@ -4254,6 +4254,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.C2WebSocket.Acts.Connect,
 		C3.Plugins.C2WebSocket.Cnds.OnOpened,
 		C3.Plugins.Browser.Acts.ConsoleLog,
+		C3.Plugins.C2WebSocket.Cnds.OnError,
+		C3.Plugins.C2WebSocket.Exps.ErrorMsg,
 		C3.Plugins.C2WebSocket.Cnds.OnMessage,
 		C3.Plugins.C2WebSocket.Exps.MessageText,
 		C3.Plugins.System.Cnds.Compare
@@ -4420,7 +4422,7 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 10);
+			return () => (n0.ExpObject() + 20);
 		},
 		() => 108,
 		() => 0.5,
@@ -4433,6 +4435,10 @@ self.C3_ExpressionFuncs = [
 		() => "ggd",
 		() => "ws://localhost:8765",
 		() => "socket connected",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => ("socket error: " + f0());
+		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => (f0()).toString();
